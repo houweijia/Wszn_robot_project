@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.hou.wszn_robot_project.ui.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@mipmap/b7"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/left_eye"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60dp"/>
+
+        <ImageView
+            android:id="@+id/right_eye"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"/>
+
+
+        <ImageView
+            android:id="@+id/mouse"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+           />
+    </RelativeLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_broadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="广播"
+        android:layout_toRightOf="@id/btn"/>
+</RelativeLayout>
