@@ -1,7 +1,9 @@
 package com.example.hou.wszn_robot_project.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView leftEye;
     private ImageView rightEye;
-    private ImageView mouse;
+    private ImageView mouth;
     private ImageView iv;
     private Button btn,btn_broadcast;
     private Context context;
@@ -52,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_broadcast.setOnClickListener(this);
         leftEye = (ImageView) findViewById(R.id.left_eye);
         rightEye = (ImageView) findViewById(R.id.right_eye);
-        mouse = (ImageView) findViewById(R.id.mouse);
+        mouth = (ImageView) findViewById(R.id.mouth);
         Intent intent = new Intent(this, SocketService.class);
         startService(intent);
-       // MyExpression.showExpression(iv,true,R.drawable.layout);
+        MyExpression.showExpression(mouth,true,R.drawable.layout);
         Timer timer = new Timer();
         timer.schedule(task,1000,10000);
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void run() {
                     MyExpression.showExpression(leftEye,true,R.drawable.layout);
                     MyExpression.showExpression(rightEye,true,R.drawable.layout);
+                    MyExpression.showExpression(mouth,true,R.drawable.layout);
                 }
             });
 
@@ -95,5 +98,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 UDPSocketBroadCast.getInstance().startUDP("111111", 8681);
                 break;
         }
+    }
+
+    private BroadcastReceiver myBroadcast = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String str = intent.getStringExtra("str");
+            Log.e("main",str);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter("updata");
+        registerReceiver(myBroadcast,filter);
+
     }
 }
